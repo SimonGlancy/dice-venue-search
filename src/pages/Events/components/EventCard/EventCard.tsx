@@ -1,4 +1,5 @@
 import React from 'react';
+
 import { Button, FlexBox, FloatingPlayButton } from '../../../../components';
 import { useAccordian, useEvent } from '../../../../hooks';
 import { DiceEvent } from '../../../../types/events';
@@ -25,7 +26,13 @@ const EventCard = (props: { diceEvent: DiceEvent }) => {
   } = useEvent(diceEvent);
 
   return (
-    <FlexBox flexDirection='column' width={'100%'} gap={8} marginBottom={32}>
+    <FlexBox
+      flexDirection='column'
+      width={'100%'}
+      gap={8}
+      marginBottom={32}
+      key={diceEvent.id}
+    >
       <FlexBox position='relative'>
         {hasTracks && <FloatingPlayButton />}
         <OnSaleIndicator
