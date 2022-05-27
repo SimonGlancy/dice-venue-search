@@ -1,5 +1,5 @@
-import { styled, WithDiceTheme } from "../../theme";
-import { percentToHex } from "../../utils";
+import { styled, WithDiceTheme } from '../../theme';
+import { percentToHex } from '../../utils';
 
 export const AccordianContainer = styled.div(
   ({ theme }) => `
@@ -24,6 +24,7 @@ export const AccordianHeader = styled.button(
   justify-content: space-between;
   cursor: pointer;
   font-weight: 600;
+  color: ${theme.palette.textPrimary};
 
   &:hover {
     background-color: ${theme.palette.appSurfaceContrast + percentToHex(10)};

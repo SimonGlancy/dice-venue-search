@@ -1,13 +1,13 @@
-import React, { PropsWithChildren } from "react";
+import React, { PropsWithChildren } from 'react';
 import {
   AccordianChildren,
   AccordianContainer,
   AccordianHeader,
-} from "./Accordian.style";
+} from './Accordian.style';
 
 export type AccordianProps = {
   onClick: () => void;
-  collapseVariant?: "header" | "icon";
+  collapseVariant?: 'header' | 'icon';
   title?: string;
   collapsed?: boolean;
   ExpandIcon?: () => JSX.Element;

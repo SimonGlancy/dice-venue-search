@@ -1,9 +1,9 @@
-import React from "react";
-import { Accordian, ColumnList, FlexBox } from "../../../../components";
-import { AccordianProps } from "../../../../components/Accordian/Accordian";
-import { DiceEvent } from "../../../../types/events";
-import { formatCurfewTime } from "../../../../utils";
-import Ticket from "../Ticket";
+import React from 'react';
+import { Accordian, ColumnList, FlexBox } from '../../../../components';
+import { AccordianProps } from '../../../../components/Accordian/Accordian';
+import { DiceEvent } from '../../../../types/events';
+import { formatCurfewTime } from '../../../../utils';
+import Ticket from '../Ticket';
 
 export type MoreInfoProps = {
   diceEvent: DiceEvent;
@@ -13,11 +13,11 @@ export type MoreInfoProps = {
   ticketsTitle?: string;
 };
 
-const MORE_INFO = "More info";
-const LESS_INFO = "Less info";
-const CURFEW = "Curfew — ";
-const LINE_UP = "LINE UP";
-const TICKETS = "TICKETS";
+const MORE_INFO = 'More info';
+const LESS_INFO = 'Less info';
+const CURFEW = 'Curfew — ';
+const LINE_UP = 'LINE UP';
+const TICKETS = 'TICKETS';
 
 type CurfewProps = {
   time: string;
@@ -39,13 +39,13 @@ const MoreInfo = (props: MoreInfoProps) => {
     diceEvent,
     accordian,
     title = accordian.collapsed ? LESS_INFO : MORE_INFO,
-    lineUpTitle = TICKETS,
-    ticketsTitle = LINE_UP,
+    lineUpTitle = LINE_UP,
+    ticketsTitle = TICKETS,
   } = props;
 
   return (
     <Accordian {...accordian} title={title}>
-      <FlexBox flexDirection="column" gap={16}>
+      <FlexBox flexDirection='column' gap={16}>
         <p>{diceEvent.description}</p>
 
         {!!diceEvent.artists.length && (
