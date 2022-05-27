@@ -1,9 +1,17 @@
 # dice-venue-search
+
 React app using Vite to search dice events by venue
 
 it is a solution for this question https://diceproduct.notion.site/External-Frontend-Engineer-Technical-Exercise-2ea705b639464e37aa8135aefc5a3211
 
 to run the app clone this repo
+
+create a .env file with the following
+
+VITE_BASE_URL
+VITE_ACCESS_TOKEN
+
+these can be found in the documentation of the test
 
 run
 
@@ -11,7 +19,7 @@ run
 
 `yarn run dev`
 
-visit 
+visit
 
 `http://localhost:3000/`
 
@@ -27,6 +35,6 @@ visit
 
 5). I have made a few components to start a component library (FlexBox, Button) but haven't gone very deep into fleshing them out. It would probably be a good idea to have a text component as I am just using raw html tags with some overrides in the App.css
 
-
 ## wins
+
 1). I think the PageColumns component is quite a neat solution for responsive layouts using the useHooks useMedia hook.
