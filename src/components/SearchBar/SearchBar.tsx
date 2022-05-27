@@ -6,17 +6,24 @@ import { IconContainer, SearchInput } from './SearchBar.style';
 export type SearchBarProps = {
   onSearch: (e: ChangeEvent<HTMLInputElement>) => void;
   searchString: string;
+  placeholder: string;
 };
 
+const EVENT_SEARCH_PLACEHOLDER = 'Search for an event';
+
 const SearchBar = (props: SearchBarProps) => {
-  const { onSearch, searchString } = props;
+  const {
+    onSearch,
+    searchString,
+    placeholder = EVENT_SEARCH_PLACEHOLDER,
+  } = props;
   return (
     <FlexBox position='relative' alignItems='center'>
       <IconContainer>
         <SearchIcon />
       </IconContainer>
       <SearchInput
-        placeholder='Search for an event'
+        placeholder={placeholder}
         value={searchString}
         onChange={onSearch}
       />
