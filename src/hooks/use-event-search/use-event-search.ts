@@ -1,4 +1,5 @@
 import { useEffect, useState, ChangeEvent, useMemo, useCallback } from 'react';
+import { useDebounce } from 'use-hooks';
 import services from '../../services';
 import { DiceEvent } from '../../types/events';
 
@@ -30,12 +31,14 @@ const useEventSearch = () => {
     [page]
   );
 
+  const debouncedSearchString = useDebounce(searchString, 500);
+
   useEffect(() => {
     const fetch = async () => {
       try {
         setIsLoading(true);
         const response = await services.events.getEvents(
-          searchString,
+          debouncedSearchString,
           pageSize,
           page
         );
@@ -53,7 +56,7 @@ const useEventSearch = () => {
       }
     };
     fetch();
-  }, [searchString, page]);
+  }, [debouncedSearchString, page]);
 
   const count = useMemo(() => data.length, [data]);
   const getMore = useCallback(() => {

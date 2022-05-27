@@ -1,6 +1,5 @@
 import React from 'react';
 import { useEventSearchContext } from '../../context';
-import { useEventSearch } from '../../hooks';
 import DiceLogo from '../DiceLogo';
 import SearchBar from '../SearchBar';
 import { HeaderContainer, HeaderLeft, HeaderRight } from './AppHeader.style';
