@@ -1,9 +1,10 @@
-import React, { useCallback, useMemo } from "react";
-import { Button, FlexBox, PageColumns, ResponsivePage } from "../../components";
+import React, { useCallback, useMemo } from 'react';
+import { Button, FlexBox, PageColumns, ResponsivePage } from '../../components';
+import { useEventSearchContext } from '../../context';
 
-import { DiceEvent } from "../../types/events";
+import { DiceEvent } from '../../types/events';
 
-import { EventCard } from "./components";
+import { EventCard } from './components';
 
 export type EventsPageProps = {
   events?: DiceEvent[];
@@ -13,19 +14,17 @@ export type EventsPageProps = {
   isLoading?: boolean;
 };
 
-export const EVENTS_PAGE_TITLE = "Events at venue";
-export const EVENTS_EMPTY_PAGE_TITLE = "No venues matching that search";
-export const LOAD_MORE = "LOAD MORE";
-export const LOADING_MORE = "LOADING MORE ...";
+export const EVENTS_PAGE_TITLE = 'Events at venue';
+export const EVENTS_EMPTY_PAGE_TITLE = 'No venues matching that search';
+export const LOAD_MORE = 'LOAD MORE';
+export const LOADING_MORE = 'LOADING MORE ...';
 
 const EventsPage = (props: EventsPageProps) => {
-  const {
-    events = [],
-    title = EVENTS_PAGE_TITLE,
-    emptyTitle = EVENTS_EMPTY_PAGE_TITLE,
-    getMore,
-    isLoading,
-  } = props;
+  const { title = EVENTS_PAGE_TITLE, emptyTitle = EVENTS_EMPTY_PAGE_TITLE } =
+    props;
+
+  const { data: events = [], getMore, isLoading } = useEventSearchContext();
+
   const pageTitle = useMemo(
     () => (events?.length ? title : emptyTitle),
     [events]
@@ -43,8 +42,8 @@ const EventsPage = (props: EventsPageProps) => {
       <PageColumns items={events} renderItem={renderItem} gap={32} />
 
       {!!events.length && (
-        <FlexBox justifyContent="center" padding={32}>
-          <Button colorVariant={"appSurfaceContrast"} onClick={getMore}>
+        <FlexBox justifyContent='center' padding={32}>
+          <Button colorVariant={'appSurfaceContrast'} onClick={getMore}>
             {isLoading ? LOADING_MORE : LOAD_MORE}
           </Button>
         </FlexBox>

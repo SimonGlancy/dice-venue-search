@@ -1,14 +1,12 @@
-import React from "react";
-import DiceLogo from "../DiceLogo";
-import SearchBar from "../SearchBar";
-import { HeaderContainer, HeaderLeft, HeaderRight } from "./AppHeader.style";
+import React from 'react';
+import { useEventSearchContext } from '../../context';
+import { useEventSearch } from '../../hooks';
+import DiceLogo from '../DiceLogo';
+import SearchBar from '../SearchBar';
+import { HeaderContainer, HeaderLeft, HeaderRight } from './AppHeader.style';
 
-// build context for this
-const AppHeader = (props: {
-  searchString: string;
-  onSearch: (e: React.ChangeEvent<HTMLInputElement>) => void;
-}) => {
-  const { searchString, onSearch } = props;
+const AppHeader = () => {
+  const { searchString, onSearch } = useEventSearchContext();
   return (
     <HeaderContainer>
       <HeaderLeft>

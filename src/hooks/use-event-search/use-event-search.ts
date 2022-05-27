@@ -1,9 +1,18 @@
-import { useEffect, useState, ChangeEvent, useMemo, useCallback } from "react";
-import services from "../../services";
-import { DiceEvent } from "../../types/events";
+import { useEffect, useState, ChangeEvent, useMemo, useCallback } from 'react';
+import services from '../../services';
+import { DiceEvent } from '../../types/events';
+
+export type UseEventSearchReturnValue = {
+  searchString: string;
+  data: DiceEvent[];
+  isLoading: boolean;
+  onSearch: (e: ChangeEvent<HTMLInputElement>) => void;
+  count: number;
+  getMore: () => void;
+};
 
 const useEventSearch = () => {
-  const [searchString, setSearchString] = useState("");
+  const [searchString, setSearchString] = useState('');
   const [data, setData] = useState<DiceEvent[]>([]);
   const [isLoading, setIsLoading] = useState(false);
   const [page, setPage] = useState(1);
@@ -39,7 +48,7 @@ const useEventSearch = () => {
           return [...prev, ...response?.data?.data];
         });
       } catch (err) {
-        console.log("FETCH ERROR", err);
+        console.log('FETCH ERROR', err);
         setIsLoading(false);
       }
     };
