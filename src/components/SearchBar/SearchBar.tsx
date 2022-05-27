@@ -6,7 +6,7 @@ import { IconContainer, SearchInput } from './SearchBar.style';
 export type SearchBarProps = {
   onSearch: (e: ChangeEvent<HTMLInputElement>) => void;
   searchString: string;
-  placeholder: string;
+  placeholder?: string;
 };
 
 const EVENT_SEARCH_PLACEHOLDER = 'Search for an event';
