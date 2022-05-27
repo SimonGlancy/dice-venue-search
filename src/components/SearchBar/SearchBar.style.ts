@@ -12,7 +12,7 @@ export const IconContainer = styled.div(
 );
 
 export const SearchInput = styled.input(
-  ({ theme }) => `
+  () => `
   appearance: none;
   color: inherit;
   padding: 12px 8px 12px 48px;
