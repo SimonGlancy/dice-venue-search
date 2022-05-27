@@ -2,8 +2,10 @@ import axios, { AxiosInstance, AxiosRequestConfig, AxiosResponse } from 'axios';
 
 //Move to.env
 
-const ACCESS_TOKEN = 'dHmvC0ZXzF4h1mWldfur13c6s4Ix6wCF4OTzozXC';
-const BASE_URL = 'https://events-api.dice.fm/v1';
+const ACCESS_TOKEN = import.meta.env.VITE_ACCESS_TOKEN || '';
+const BASE_URL = import.meta.env.VITE_BASE_URL;
+
+console.log('_____IMPORT', import.meta);
 
 const defaultParams: AxiosRequestConfig = {
   timeout: 20000,
