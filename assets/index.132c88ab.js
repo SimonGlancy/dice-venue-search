@@ -94,6 +94,7 @@ Error generating stack: `+o.message+`
   justify-content: space-between;
   cursor: pointer;
   font-weight: 600;
+  color: ${e.palette.textPrimary};
 
   &:hover {
     background-color: ${e.palette.appSurfaceContrast+l1(10)};
@@ -171,7 +172,7 @@ Error generating stack: `+o.message+`
 `,lg=e=>{const{variant:t,eventImages:n}=e,r=K.exports.useMemo(()=>n[t]||"",[n,t]);return j(og,{src:r})},ug="SOLD OUT",sg=Ce.strong(({theme:e})=>`
   margin-left: ${e.spacing(1)}px;
   opacity: 0.5
-`),ag=e=>{const{ticket:t,soldOutString:n=ug}=e;return ve("span",{children:[t.name," \u2014",ve("strong",{children:[" ",bd(t.price.total)]}),t.sold_out&&j(sg,{children:n})]})},cg="More info",fg="Less info",dg="Curfew \u2014 ",pg="LINE UP",hg="TICKETS",mg=e=>{const{curfewString:t=dg,time:n}=e;return ve("p",{children:[t,ve("strong",{children:[" ",r1(n)]})]})},vg=e=>{const{diceEvent:t,accordian:n,title:r=n.collapsed?fg:cg,lineUpTitle:i=hg,ticketsTitle:o=pg}=e;return j(c1,_n(Xe({},n),{title:r,children:ve(gt,{flexDirection:"column",gap:16,children:[j("p",{children:t.description}),!!t.artists.length&&j(Oc,{title:i,items:t.artists,renderItem:l=>j("span",{children:l})}),j(mg,{time:t.date_end}),j(Oc,{title:o,items:t.ticket_types,renderItem:l=>j(ag,{ticket:l})})]})}))},gg=Ce.div(({theme:e})=>`
+`),ag=e=>{const{ticket:t,soldOutString:n=ug}=e;return ve("span",{children:[t.name," \u2014",ve("strong",{children:[" ",bd(t.price.total)]}),t.sold_out&&j(sg,{children:n})]})},cg="More info",fg="Less info",dg="Curfew \u2014 ",pg="LINE UP",hg="TICKETS",mg=e=>{const{curfewString:t=dg,time:n}=e;return ve("p",{children:[t,ve("strong",{children:[" ",r1(n)]})]})},vg=e=>{const{diceEvent:t,accordian:n,title:r=n.collapsed?fg:cg,lineUpTitle:i=pg,ticketsTitle:o=hg}=e;return j(c1,_n(Xe({},n),{title:r,children:ve(gt,{flexDirection:"column",gap:16,children:[j("p",{children:t.description}),!!t.artists.length&&j(Oc,{title:i,items:t.artists,renderItem:l=>j("span",{children:l})}),j(mg,{time:t.date_end}),j(Oc,{title:o,items:t.ticket_types,renderItem:l=>j(ag,{ticket:l})})]})}))},gg=Ce.div(({theme:e})=>`
     background-color: ${e.palette.appSurfaceContrast};
     opacity: 0.9;
     padding: ${e.spacing(.5)}px;
