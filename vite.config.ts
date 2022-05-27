@@ -3,6 +3,6 @@ import react from '@vitejs/plugin-react';
 
 // https://vitejs.dev/config/
 export default defineConfig({
-  base: 'dice-venue-search',
+  base: '/dice-venue-search/',
   plugins: [react()],
 });
