@@ -34,7 +34,9 @@ const EventsPage = (props: EventsPageProps) => {
   }, [events, isLoading]);
 
   const renderItem = useCallback(
-    (diceEvent: DiceEvent) => <EventCard diceEvent={diceEvent} />,
+    (diceEvent: DiceEvent) => (
+      <EventCard key={diceEvent.id} diceEvent={diceEvent} />
+    ),
     [events]
   );
 

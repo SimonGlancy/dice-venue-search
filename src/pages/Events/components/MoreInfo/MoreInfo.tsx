@@ -52,7 +52,9 @@ const MoreInfo = (props: MoreInfoProps) => {
           <ColumnList
             title={lineUpTitle}
             items={diceEvent.artists}
-            renderItem={(artist) => <span>{artist}</span>}
+            renderItem={(artist, index) => (
+              <span key={`artist-${index}`}>{artist}</span>
+            )}
           />
         )}
         <Curfew time={diceEvent.date_end} />
@@ -60,7 +62,9 @@ const MoreInfo = (props: MoreInfoProps) => {
         <ColumnList
           title={ticketsTitle}
           items={diceEvent.ticket_types}
-          renderItem={(ticket) => <Ticket ticket={ticket} />}
+          renderItem={(ticket, index) => (
+            <Ticket key={`ticket-${index}`} ticket={ticket} />
+          )}
         />
       </FlexBox>
     </Accordian>
