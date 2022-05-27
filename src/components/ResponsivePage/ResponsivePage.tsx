@@ -1,6 +1,6 @@
-import React, { PropsWithChildren } from "react";
-import FlexBox from "../FlexBox";
-import { InnerContainer, OuterContainer } from "./ResponsivePage.styles";
+import React, { PropsWithChildren } from 'react';
+import FlexBox from '../FlexBox';
+import { InnerContainer, OuterContainer } from './ResponsivePage.styles';
 
 export type ResponsivePageProps = {
   title?: string;
@@ -12,7 +12,7 @@ const ResponsivePage = (props: PropsWithChildren<ResponsivePageProps>) => {
     <OuterContainer>
       <InnerContainer>
         {title && (
-          <FlexBox marginTop={64} marginBottom={32}>
+          <FlexBox marginTop={0} marginBottom={32}>
             <h2>{title}</h2>
           </FlexBox>
         )}

@@ -9,6 +9,7 @@ import {
 const ON_SALE = 'On Sale';
 const BUY_NOW = 'BUY NOW';
 const GET_REMINDED = 'GET REMINDED';
+const FREE = 'Free';
 
 const useEvent = (diceEvent: DiceEvent) => {
   const eventOnSaleString = useMemo(
@@ -33,7 +34,10 @@ const useEvent = (diceEvent: DiceEvent) => {
   );
 
   const cheapestTicketTotalString = useMemo(
-    () => formatMoneyInteger(cheapestTicket.price.total),
+    () =>
+      !!cheapestTicket.price.total
+        ? formatMoneyInteger(cheapestTicket.price.total)
+        : FREE,
     [cheapestTicket]
   );
 

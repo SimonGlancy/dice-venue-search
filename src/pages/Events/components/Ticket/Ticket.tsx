@@ -1,14 +1,16 @@
-import React from "react";
-import { styled } from "../../../../theme";
-import { TicketType } from "../../../../types/events";
-import { formatMoneyInteger } from "../../../../utils";
+import React from 'react';
+import { FlexBox } from '../../../../components';
+import { styled } from '../../../../theme';
+import { TicketType } from '../../../../types/events';
+import { formatMoneyInteger } from '../../../../utils';
 
 export type TicketProps = {
   ticket: TicketType;
   soldOutString?: string;
 };
 
-const SOLD_OUT = "SOLD OUT";
+const SOLD_OUT = 'SOLD OUT';
+const FREE = 'Free';
 
 const SoldOutText = styled.strong(
   ({ theme }) => `
@@ -20,10 +22,15 @@ const SoldOutText = styled.strong(
 const Ticket = (props: TicketProps) => {
   const { ticket, soldOutString = SOLD_OUT } = props;
   return (
-    <span>
-      {ticket.name} —<strong> {formatMoneyInteger(ticket.price.total)}</strong>
+    <FlexBox flexDirection='row' justifyContent='space-between'>
+      <span>
+        {ticket.name} —{' '}
+        <strong>
+          {ticket.price.total ? formatMoneyInteger(ticket.price.total) : FREE}
+        </strong>
+      </span>
       {ticket.sold_out && <SoldOutText>{soldOutString}</SoldOutText>}
-    </span>
+    </FlexBox>
   );
 };
 

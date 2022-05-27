@@ -18,6 +18,7 @@ export const EVENTS_PAGE_TITLE = 'Events at venue';
 export const EVENTS_EMPTY_PAGE_TITLE = 'No venues matching that search';
 export const LOAD_MORE = 'LOAD MORE';
 export const LOADING_MORE = 'LOADING MORE ...';
+export const LOADING = 'Loading ...';
 
 const EventsPage = (props: EventsPageProps) => {
   const { title = EVENTS_PAGE_TITLE, emptyTitle = EVENTS_EMPTY_PAGE_TITLE } =
@@ -25,10 +26,12 @@ const EventsPage = (props: EventsPageProps) => {
 
   const { data: events = [], getMore, isLoading } = useEventSearchContext();
 
-  const pageTitle = useMemo(
-    () => (events?.length ? title : emptyTitle),
-    [events]
-  );
+  const pageTitle = useMemo(() => {
+    if (isLoading && !events.length) {
+      return LOADING;
+    }
+    return events?.length ? title : emptyTitle;
+  }, [events, isLoading]);
 
   const renderItem = useCallback(
     (diceEvent: DiceEvent) => <EventCard diceEvent={diceEvent} />,
@@ -37,7 +40,7 @@ const EventsPage = (props: EventsPageProps) => {
 
   return (
     <ResponsivePage title={pageTitle}>
-      {/* I Would want to virtualise the rendering here as deosn't seem performant */}
+      {/* I Would want to virtualise the rendering here as doesn't seem performant */}
       {/* this looks promising https://react-virtual.tanstack.com/examples/variable */}
       <PageColumns items={events} renderItem={renderItem} gap={32} />
 

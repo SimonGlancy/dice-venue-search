@@ -1,12 +1,12 @@
-import { styled } from "../../theme";
+import { styled } from '../../theme';
 
 export const OuterContainer = styled.div(
   ({ theme }) => `
   display:flex;
   padding-top: ${
-    theme.header.position === "fixed"
+    theme.header.position === 'fixed'
       ? `${theme.header.height + theme.header.padding * 2}px`
-      : ""
+      : ''
   };
   align-items: center;
 
