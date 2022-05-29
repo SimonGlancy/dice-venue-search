@@ -10,8 +10,9 @@ to run the app clone this repo
 
 create a .env file with the following
 
-VITE_BASE_URL
-VITE_ACCESS_TOKEN
+`VITE_BASE_URL`
+
+`VITE_ACCESS_TOKEN`
 
 these can be found in the documentation of the test
 
