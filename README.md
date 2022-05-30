@@ -26,7 +26,7 @@ visit
 
 `http://localhost:3000/`
 
-## considerations and improvements
+## Considerations and improvements
 
 1). cache data, at the moment data fetching is in rudimentary custom hook, could implement react query for some more smarts here
 
@@ -36,6 +36,6 @@ visit
 
 4). I have made a few components to start a component library (FlexBox, Button) but haven't gone very deep into fleshing them out. It would probably be a good idea to have a text component as I am just using raw html tags with some overrides in the App.css
 
-## wins
+## Wins
 
 1). I think the PageColumns component is quite a neat solution for responsive layouts using the useHooks useMedia hook.
