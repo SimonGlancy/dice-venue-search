@@ -1,8 +1,11 @@
-import { PropsWithChildren } from 'react';
-import { useColumniseData } from '../../hooks';
-import FlexBox from '../FlexBox';
-import { PageColumnsContainer } from './PageColumns.style';
-import { PageColumnsProps } from './PageColumns.types';
+import { PropsWithChildren, useCallback } from "react";
+
+import { useColumniseData, useColumnWidthMeasurer } from "../../hooks";
+
+import FlexBox from "../FlexBox";
+import VirtualColumn from "../VirtualColumn";
+import { PageColumnsContainer } from "./PageColumns.style";
+import { PageColumnsProps } from "./PageColumns.types";
 
 const PageColumns = <DataType,>(
   props: PropsWithChildren<PageColumnsProps<DataType>>
@@ -12,29 +15,54 @@ const PageColumns = <DataType,>(
     items,
     renderItem,
     mediaQueries = [
-      '(min-width: 1500px)',
-      '(min-width: 1000px)',
-      '(min-width: 560px)',
+      "(min-width: 1500px)",
+      "(min-width: 1000px)",
+      "(min-width: 560px)",
     ],
     columnNumbers = [3, 3, 2],
     defaultColumn = 1,
+    pageRef,
+
+    virtualised = true,
     ...rest
   } = props;
 
-  const { columns, columnsArray } = useColumniseData({
+  const { columns, columnsArray, columnCount } = useColumniseData({
     mediaQueries,
     items,
     columnNumbers,
     defaultColumn,
   });
 
+  const columnWidth = useColumnWidthMeasurer(columnCount, 2);
+
+  const renderColumns = useCallback(
+    (_: number, index: number) => {
+      if (virtualised) {
+        return (
+          <VirtualColumn
+            key={`column-${index}`}
+            pageRef={pageRef}
+            items={columns[index]}
+            renderItem={renderItem}
+            columnWidth={columnWidth}
+          />
+        );
+      }
+      return (
+        <FlexBox key={index} width="100%" flexDirection={"column"}>
+          {columns[index]?.map((item, index) =>
+            renderItem(item, index, columnWidth)
+          )}
+        </FlexBox>
+      );
+    },
+    [virtualised, columnWidth, pageRef, renderItem]
+  );
+
   return (
     <PageColumnsContainer {...rest}>
-      {columnsArray.map((_, index) => (
-        <FlexBox key={index} width='100%' flexDirection={'column'}>
-          {columns[index]?.map(renderItem)}
-        </FlexBox>
-      ))}
+      {columnsArray.map(renderColumns)}
     </PageColumnsContainer>
   );
 };

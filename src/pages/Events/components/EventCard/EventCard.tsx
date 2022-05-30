@@ -1,17 +1,17 @@
-import React from 'react';
+import React from "react";
 
-import { Button, FlexBox, FloatingPlayButton } from '../../../../components';
-import { useAccordian, useEvent } from '../../../../hooks';
-import { DiceEvent } from '../../../../types/events';
+import { Button, FlexBox, FloatingPlayButton } from "../../../../components";
+import { useAccordian, useEvent } from "../../../../hooks";
+import { DiceEvent } from "../../../../types/events";
 
-import EventImage from '../EventImage';
-import { MoreInfo } from '../MoreInfo';
-import OnSaleIndicator from '../OnSaleIndicator';
+import EventImage from "../EventImage";
+import { MoreInfo } from "../MoreInfo";
+import OnSaleIndicator from "../OnSaleIndicator";
 
-import TicketCostSummary from '../TicketCostSummary';
+import TicketCostSummary from "../TicketCostSummary";
 
-const EventCard = (props: { diceEvent: DiceEvent }) => {
-  const { diceEvent } = props;
+const EventCard = (props: { diceEvent: DiceEvent; columnWidth: number }) => {
+  const { diceEvent, columnWidth } = props;
   const accordian = useAccordian(false);
 
   const {
@@ -27,13 +27,15 @@ const EventCard = (props: { diceEvent: DiceEvent }) => {
 
   return (
     <FlexBox
-      flexDirection='column'
-      width={'100%'}
+      flexDirection="column"
+      width={"100%"}
+      height={"100%"}
       gap={8}
       marginBottom={32}
       key={diceEvent.id}
+      minHeight={500}
     >
-      <FlexBox position='relative'>
+      <FlexBox position="relative">
         {hasTracks && <FloatingPlayButton />}
         <OnSaleIndicator
           isOnSale={isOnSale}
@@ -43,11 +45,12 @@ const EventCard = (props: { diceEvent: DiceEvent }) => {
         {/* Design seems to call for the landscape image when the more info is expanded
         this feels a bit glitchy in the app as the images load quite slowly causing a jump */}
         <EventImage
-          variant={accordian.collapsed ? 'landscape' : 'square'}
+          variant={accordian.collapsed ? "landscape" : "square"}
           eventImages={diceEvent.event_images}
+          columnWidth={columnWidth}
         />
       </FlexBox>
-      <FlexBox flexDirection='column' marginBottom={8} gap={16}>
+      <FlexBox flexDirection="column" marginBottom={8} gap={16}>
         <p>{formattedEventDate}</p>
         <h2>{diceEvent.name}</h2>
         <div>
@@ -60,9 +63,9 @@ const EventCard = (props: { diceEvent: DiceEvent }) => {
       <MoreInfo diceEvent={diceEvent} accordian={accordian} />
 
       <FlexBox
-        flexDirection='row'
-        justifyContent='space-between'
-        alignItems='center'
+        flexDirection="row"
+        justifyContent="space-between"
+        alignItems="center"
       >
         <Button onClick={handleButtonClick}>{buttonString}</Button>
         <TicketCostSummary

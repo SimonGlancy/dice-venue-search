@@ -1,10 +1,10 @@
-import React, { useCallback, useMemo } from 'react';
-import { Button, FlexBox, PageColumns, ResponsivePage } from '../../components';
-import { useEventSearchContext } from '../../context';
+import React, { useCallback, useMemo, useRef } from "react";
+import { Button, FlexBox, PageColumns, ResponsivePage } from "../../components";
+import { useEventSearchContext } from "../../context";
 
-import { DiceEvent } from '../../types/events';
+import { DiceEvent } from "../../types/events";
 
-import { EventCard } from './components';
+import { EventCard } from "./components";
 
 export type EventsPageProps = {
   events?: DiceEvent[];
@@ -14,15 +14,17 @@ export type EventsPageProps = {
   isLoading?: boolean;
 };
 
-export const EVENTS_PAGE_TITLE = 'Events at venue';
-export const EVENTS_EMPTY_PAGE_TITLE = 'No venues matching that search';
-export const LOAD_MORE = 'LOAD MORE';
-export const LOADING_MORE = 'LOADING MORE ...';
-export const LOADING = 'Loading ...';
+export const EVENTS_PAGE_TITLE = "Events at venue";
+export const EVENTS_EMPTY_PAGE_TITLE = "No venues matching that search";
+export const LOAD_MORE = "LOAD MORE";
+export const LOADING_MORE = "LOADING MORE ...";
+export const LOADING = "Loading ...";
 
 const EventsPage = (props: EventsPageProps) => {
   const { title = EVENTS_PAGE_TITLE, emptyTitle = EVENTS_EMPTY_PAGE_TITLE } =
     props;
+
+  const pageRef = useRef<HTMLDivElement>(null);
 
   const { data: events = [], getMore, isLoading } = useEventSearchContext();
 
@@ -34,21 +36,30 @@ const EventsPage = (props: EventsPageProps) => {
   }, [events, isLoading]);
 
   const renderItem = useCallback(
-    (diceEvent: DiceEvent) => (
-      <EventCard key={diceEvent.id} diceEvent={diceEvent} />
+    (diceEvent: DiceEvent, index: number, columnWidth: number) => (
+      <EventCard
+        key={diceEvent.id}
+        diceEvent={diceEvent}
+        columnWidth={columnWidth}
+      />
     ),
     [events]
   );
 
   return (
-    <ResponsivePage title={pageTitle}>
+    <ResponsivePage title={pageTitle} outerRef={pageRef}>
       {/* I Would want to virtualise the rendering here as doesn't seem performant */}
       {/* this looks promising https://react-virtual.tanstack.com/examples/variable */}
-      <PageColumns items={events} renderItem={renderItem} gap={32} />
+      <PageColumns
+        items={events}
+        renderItem={renderItem}
+        gap={32}
+        pageRef={pageRef}
+      />
 
       {!!events.length && (
-        <FlexBox justifyContent='center' padding={32}>
-          <Button colorVariant={'appSurfaceContrast'} onClick={getMore}>
+        <FlexBox justifyContent="center" padding={32}>
+          <Button colorVariant={"appSurfaceContrast"} onClick={getMore}>
             {isLoading ? LOADING_MORE : LOAD_MORE}
           </Button>
         </FlexBox>

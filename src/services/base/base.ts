@@ -3,6 +3,7 @@ import axios, { AxiosInstance, AxiosRequestConfig, AxiosResponse } from 'axios';
 const ACCESS_TOKEN = import.meta.env.VITE_ACCESS_TOKEN || '';
 const BASE_URL = import.meta.env.VITE_BASE_URL;
 
+
 const defaultParams: AxiosRequestConfig = {
   timeout: 20000,
   baseURL: BASE_URL,

@@ -1,4 +1,7 @@
-import styled, { ThemedBaseStyledInterface } from "styled-components";
+import styled, {
+  ThemedBaseStyledInterface,
+  useTheme as useThemeBase,
+} from "styled-components";
 
 const PALETTE = {
   primary: "#3C74FF",
@@ -56,5 +59,5 @@ export type WithDiceTheme = {
 
 // this allows typing of the theme object
 export const diceStyled = styled as any as ThemedBaseStyledInterface<DiceTheme>;
-
+export const useTheme = useThemeBase as any as () => DiceTheme;
 export default theme;
