@@ -14,7 +14,6 @@ export const LoadingTile = styled.div<LoadingTileProps>(
   background-color: ${theme.palette.appSurfaceContrast + percentToHex(10)};
   height: ${height}px;
   width: 100%;
-  
 `
 );
 

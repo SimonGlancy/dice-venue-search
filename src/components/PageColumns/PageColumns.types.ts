@@ -12,4 +12,5 @@ export type PageColumnsProps<DataType> = {
   defaultColumn?: number;
   pageRef: RefObject<HTMLDivElement>;
   virtualised?: boolean;
+  columnGap?: number; // space between columns (as multiple of base unit) i.e 16px = 2
 };

@@ -1,13 +1,8 @@
-import React, {
-  useCallback,
-  useLayoutEffect,
-  useMemo,
-  useRef,
-  useState,
-} from "react";
-import { FlexBox } from "../../../../components";
+import React, { useCallback, useMemo, useState } from "react";
+
 import { DiceEvent } from "../../../../types/events";
 import { Image, LoadingTile } from "./EventImage.style";
+
 export type EventImageProps = {
   variant: keyof DiceEvent["event_images"];
   eventImages: DiceEvent["event_images"];
@@ -26,8 +21,6 @@ const EventImage = (props: EventImageProps) => {
     () => eventImages[variant] || "",
     [eventImages, variant]
   );
-
-  // manage toggle image
 
   return (
     <div>

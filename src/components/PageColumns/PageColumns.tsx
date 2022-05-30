@@ -1,5 +1,4 @@
 import { PropsWithChildren, useCallback } from "react";
-
 import { useColumniseData, useColumnWidthMeasurer } from "../../hooks";
 
 import FlexBox from "../FlexBox";
@@ -22,7 +21,7 @@ const PageColumns = <DataType,>(
     columnNumbers = [3, 3, 2],
     defaultColumn = 1,
     pageRef,
-
+    columnGap = 2,
     virtualised = true,
     ...rest
   } = props;
@@ -34,7 +33,7 @@ const PageColumns = <DataType,>(
     defaultColumn,
   });
 
-  const columnWidth = useColumnWidthMeasurer(columnCount, 2);
+  const columnWidth = useColumnWidthMeasurer(columnCount, columnGap);
 
   const renderColumns = useCallback(
     (_: number, index: number) => {
