@@ -10,7 +10,7 @@ to run the app clone this repo
 
 create a .env file with the following
 
-`VITE_BASE_URL`
+`VITE_BASE_URL` - note that the base api has the /events removed
 
 `VITE_ACCESS_TOKEN`
 
