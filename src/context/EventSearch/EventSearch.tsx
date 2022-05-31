@@ -1,10 +1,10 @@
-import { createContext, PropsWithChildren, useContext } from 'react';
-import { useEventSearch } from '../../hooks';
-import { UseEventSearchReturnValue } from '../../hooks/use-event-search/use-event-search';
+import { createContext, PropsWithChildren, useContext } from "react";
+import { useEventSearch } from "../../hooks";
+import { UseEventSearchReturnValue } from "../../hooks/use-event-search/use-event-search.types";
 
 const initialValues: UseEventSearchReturnValue = {
   getMore: () => {},
-  searchString: '',
+  searchString: "",
   data: [],
   count: 0,
   onSearch: () => {},
