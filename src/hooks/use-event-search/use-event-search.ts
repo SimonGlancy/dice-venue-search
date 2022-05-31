@@ -12,12 +12,23 @@ export type UseEventSearchReturnValue = {
   getMore: () => void;
 };
 
-const useEventSearch = () => {
+export type UseEventSearchParams = {
+  size?: number;
+  startPage?: number;
+};
+
+const DEFAULT_PAGE_SIZE = 12;
+const DEFAULT_START_PAGE = 1;
+
+const useEventSearch = ({
+  size = DEFAULT_PAGE_SIZE,
+  startPage = DEFAULT_START_PAGE,
+}: UseEventSearchParams) => {
   const [searchString, setSearchString] = useState("");
   const [data, setData] = useState<DiceEvent[]>([]);
   const [isLoading, setIsLoading] = useState(false);
-  const [page, setPage] = useState(1);
-  const [pageSize] = useState(12);
+  const [page, setPage] = useState(startPage);
+  const [pageSize] = useState(size);
 
   const onSearch = useCallback(
     (e: ChangeEvent<HTMLInputElement>) => {
