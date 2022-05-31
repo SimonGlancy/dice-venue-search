@@ -1,7 +1,7 @@
-import { useEffect, useState, ChangeEvent, useMemo, useCallback } from 'react';
-import { useDebounce } from 'use-hooks';
-import services from '../../services';
-import { DiceEvent } from '../../types/events';
+import { useEffect, useState, ChangeEvent, useMemo, useCallback } from "react";
+import { useDebounce } from "use-hooks";
+import services from "../../services";
+import { DiceEvent } from "../../types/events";
 
 export type UseEventSearchReturnValue = {
   searchString: string;
@@ -13,13 +13,12 @@ export type UseEventSearchReturnValue = {
 };
 
 const useEventSearch = () => {
-  const [searchString, setSearchString] = useState('');
+  const [searchString, setSearchString] = useState("");
   const [data, setData] = useState<DiceEvent[]>([]);
   const [isLoading, setIsLoading] = useState(false);
   const [page, setPage] = useState(1);
   const [pageSize] = useState(12);
 
-  // debounce this
   const onSearch = useCallback(
     (e: ChangeEvent<HTMLInputElement>) => {
       if (page !== 1) {
@@ -51,7 +50,7 @@ const useEventSearch = () => {
           return [...prev, ...response?.data?.data];
         });
       } catch (err) {
-        console.log('FETCH ERROR', err);
+        console.log("FETCH ERROR", err);
         setIsLoading(false);
       }
     };
