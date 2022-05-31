@@ -2,20 +2,10 @@ import { useEffect, useState, ChangeEvent, useMemo, useCallback } from "react";
 import { useDebounce } from "use-hooks";
 import services from "../../services";
 import { DiceEvent } from "../../types/events";
-
-export type UseEventSearchReturnValue = {
-  searchString: string;
-  data: DiceEvent[];
-  isLoading: boolean;
-  onSearch: (e: ChangeEvent<HTMLInputElement>) => void;
-  count: number;
-  getMore: () => void;
-};
-
-export type UseEventSearchParams = {
-  size?: number;
-  startPage?: number;
-};
+import {
+  UseEventSearchParams,
+  UseEventSearchReturnValue,
+} from "./use-event-search.types";
 
 const DEFAULT_PAGE_SIZE = 12;
 const DEFAULT_START_PAGE = 1;
@@ -23,7 +13,7 @@ const DEFAULT_START_PAGE = 1;
 const useEventSearch = ({
   size = DEFAULT_PAGE_SIZE,
   startPage = DEFAULT_START_PAGE,
-}: UseEventSearchParams) => {
+}: UseEventSearchParams): UseEventSearchReturnValue => {
   const [searchString, setSearchString] = useState("");
   const [data, setData] = useState<DiceEvent[]>([]);
   const [isLoading, setIsLoading] = useState(false);
