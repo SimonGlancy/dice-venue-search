@@ -10,6 +10,8 @@ export const OuterContainer = styled.div(
   };
   align-items: center;
 
+
+
 `
 );
 
