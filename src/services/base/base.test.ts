@@ -1,11 +1,11 @@
-import BaseApi from './base';
-import axios from 'axios';
+import BaseApi from "./base";
+import axios from "axios";
 
-jest.mock('axios', () => {
-  const axios = jest.requireActual('axios');
+jest.mock("axios", () => {
+  const axios = jest.requireActual("axios");
   const mockedAxios = {
     ...axios,
-    request: jest.fn(() => Promise.resolve({ data: 'here' })),
+    request: jest.fn(() => Promise.resolve({ data: "here" })),
   };
   return {
     ...mockedAxios,
@@ -15,97 +15,97 @@ jest.mock('axios', () => {
 
 export const axiosMock = axios as jest.Mocked<typeof axios>;
 
-const TEST_PATH = '/testPath';
+const TEST_PATH = "/testPath";
 
 class TestApi extends BaseApi {
   protected basePath = TEST_PATH;
 }
 
-describe('BaseApi', () => {
-  it('GET Calls the underlying Api class request function', async () => {
-    const topPath = 'test';
+describe("BaseApi", () => {
+  it("GET Calls the underlying Api class request function", async () => {
+    const topPath = "test";
     const baseApi = new TestApi();
 
-    await baseApi.get('/test');
+    await baseApi.get("/test");
 
-    const testConfig = { method: 'GET', url: `${TEST_PATH}/${topPath}` };
+    const testConfig = { method: "GET", url: `${TEST_PATH}/${topPath}` };
 
     expect(axiosMock.request).toHaveBeenCalledWith(testConfig);
   });
 
-  it('POST Calls the underlying Api class request function', async () => {
-    const topPath = 'test';
+  it("POST Calls the underlying Api class request function", async () => {
+    const topPath = "test";
     const baseApi = new TestApi();
 
-    await baseApi.post('/test', { test: 'test' });
+    await baseApi.post("/test", { test: "test" });
 
     const testConfig = {
-      method: 'POST',
+      method: "POST",
       url: `${TEST_PATH}/${topPath}`,
-      data: { test: 'test' },
+      data: { test: "test" },
     };
 
     expect(axiosMock.request).toHaveBeenCalledWith(testConfig);
   });
 
-  it('DELETE Calls the underlying Api class request function', async () => {
-    const topPath = 'test';
+  it("DELETE Calls the underlying Api class request function", async () => {
+    const topPath = "test";
     const baseApi = new TestApi();
 
-    await baseApi.delete('/test');
+    await baseApi.delete("/test");
 
-    const testConfig = { method: 'DELETE', url: `${TEST_PATH}/${topPath}` };
+    const testConfig = { method: "DELETE", url: `${TEST_PATH}/${topPath}` };
 
     expect(axiosMock.request).toHaveBeenCalledWith(testConfig);
   });
 
-  it('HEAD Calls the underlying Api class request function', async () => {
-    const topPath = 'test';
+  it("HEAD Calls the underlying Api class request function", async () => {
+    const topPath = "test";
     const baseApi = new TestApi();
 
-    await baseApi.head('/test');
+    await baseApi.head("/test");
 
-    const testConfig = { method: 'HEAD', url: `${TEST_PATH}/${topPath}` };
+    const testConfig = { method: "HEAD", url: `${TEST_PATH}/${topPath}` };
 
     expect(axiosMock.request).toHaveBeenCalledWith(testConfig);
   });
 
-  it('OPTIONS Calls the underlying Api class request function', async () => {
-    const topPath = 'test';
+  it("OPTIONS Calls the underlying Api class request function", async () => {
+    const topPath = "test";
     const baseApi = new TestApi();
 
-    await baseApi.options('/test');
+    await baseApi.options("/test");
 
-    const testConfig = { method: 'OPTIONS', url: `${TEST_PATH}/${topPath}` };
+    const testConfig = { method: "OPTIONS", url: `${TEST_PATH}/${topPath}` };
 
     expect(axiosMock.request).toHaveBeenCalledWith(testConfig);
   });
 
-  it('PUT Calls the underlying Api class request function', async () => {
-    const topPath = 'test';
+  it("PUT Calls the underlying Api class request function", async () => {
+    const topPath = "test";
     const baseApi = new TestApi();
 
-    await baseApi.put('/test', { test: 'test' });
+    await baseApi.put("/test", { test: "test" });
 
     const testConfig = {
-      method: 'PUT',
+      method: "PUT",
       url: `${TEST_PATH}/${topPath}`,
-      data: { test: 'test' },
+      data: { test: "test" },
     };
 
     expect(axiosMock.request).toHaveBeenCalledWith(testConfig);
   });
 
-  it('PATCH Calls the underlying Api class request function', async () => {
-    const topPath = 'test';
+  it("PATCH Calls the underlying Api class request function", async () => {
+    const topPath = "test";
     const baseApi = new TestApi();
 
-    await baseApi.patch('/test', { test: 'test' });
+    await baseApi.patch("/test", { test: "test" });
 
     const testConfig = {
-      method: 'PATCH',
+      method: "PATCH",
       url: `${TEST_PATH}/${topPath}`,
-      data: { test: 'test' },
+      data: { test: "test" },
     };
 
     expect(axiosMock.request).toHaveBeenCalledWith(testConfig);

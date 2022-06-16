@@ -1,8 +1,7 @@
-import axios, { AxiosInstance, AxiosRequestConfig, AxiosResponse } from 'axios';
+import axios, { AxiosInstance, AxiosRequestConfig, AxiosResponse } from "axios";
 
-const ACCESS_TOKEN = import.meta.env.VITE_ACCESS_TOKEN || '';
+const ACCESS_TOKEN = import.meta.env.VITE_ACCESS_TOKEN || "";
 const BASE_URL = import.meta.env.VITE_BASE_URL;
-
 
 const defaultParams: AxiosRequestConfig = {
   timeout: 20000,
@@ -11,7 +10,7 @@ const defaultParams: AxiosRequestConfig = {
 
 export interface CreateConfigParams<T> {
   config?: AxiosRequestConfig;
-  method: AxiosRequestConfig['method'];
+  method: AxiosRequestConfig["method"];
   data?: T;
   url: string;
 }
@@ -56,7 +55,7 @@ abstract class BaseApi {
     url: string,
     config?: AxiosRequestConfig
   ): Promise<R> {
-    const updatedConfig = this.createConfig({ config, url, method: 'GET' });
+    const updatedConfig = this.createConfig({ config, url, method: "GET" });
     return this.request<T, R>(updatedConfig);
   }
 
@@ -64,7 +63,7 @@ abstract class BaseApi {
     url: string,
     config?: AxiosRequestConfig
   ): Promise<R> {
-    const updatedConfig = this.createConfig({ config, url, method: 'DELETE' });
+    const updatedConfig = this.createConfig({ config, url, method: "DELETE" });
     return this.request<T, R>(updatedConfig);
   }
 
@@ -72,7 +71,7 @@ abstract class BaseApi {
     url: string,
     config?: AxiosRequestConfig
   ): Promise<R> {
-    const updatedConfig = this.createConfig({ config, url, method: 'HEAD' });
+    const updatedConfig = this.createConfig({ config, url, method: "HEAD" });
     return this.request<T, R>(updatedConfig);
   }
 
@@ -80,7 +79,7 @@ abstract class BaseApi {
     url: string,
     config?: AxiosRequestConfig
   ): Promise<R> {
-    const updatedConfig = this.createConfig({ config, url, method: 'OPTIONS' });
+    const updatedConfig = this.createConfig({ config, url, method: "OPTIONS" });
     return this.request<T, R>(updatedConfig);
   }
 
@@ -92,7 +91,7 @@ abstract class BaseApi {
     const updatedConfig = this.createConfig({
       config,
       url,
-      method: 'POST',
+      method: "POST",
       data,
     });
     return this.request<T, R>(updatedConfig);
@@ -106,7 +105,7 @@ abstract class BaseApi {
     const updatedConfig = this.createConfig({
       config,
       url,
-      method: 'PUT',
+      method: "PUT",
       data,
     });
     return this.request<T, R>(updatedConfig);
@@ -120,7 +119,7 @@ abstract class BaseApi {
     const updatedConfig = this.createConfig({
       config,
       url,
-      method: 'PATCH',
+      method: "PATCH",
       data,
     });
     return this.request<T, R>(updatedConfig);
@@ -137,7 +136,7 @@ abstract class BaseApi {
         ...config.headers,
         ...(BaseApi.authToken?.length
           ? {
-              'x-api-key': `${BaseApi.authToken}`,
+              "x-api-key": `${BaseApi.authToken}`,
             }
           : {}),
       },
@@ -146,7 +145,7 @@ abstract class BaseApi {
   }
 
   static requestInterceptorError(error: Error) {
-    console.log('Request Failed', error);
+    console.log("Request Failed", error);
     return error;
   }
 
